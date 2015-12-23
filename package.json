@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "karma",
-    "prestart": "watchify"
+    "watch": "watchify --debug client/angular/app.js -o client/public/js/build.js"
   },
   "repository": {
     "type": "git",
@@ -24,15 +24,12 @@
     "url": "https://github.com/jordane51/Bills/issues"
   },
   "homepage": "https://github.com/jordane51/Bills#readme",
-  "devDependencies": {
-    "karma": "^0.13.15"
-  },
   "dependencies": {
     "angular": "^1.4.8",
     "angular-ui-bootstrap": "^0.14.3",
     "express": "^4.13.3",
     "kerberos": "0.0.17",
-    "mongodb": "^2.1.0",
+    "mongoose": "^4.3.3",
     "passport": "^0.3.2",
     "watchify": "^3.6.1"
   }
