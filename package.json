@@ -32,5 +32,8 @@
     "mongoose": "^4.3.3",
     "passport": "^0.3.2",
     "watchify": "^3.6.1"
+  },
+  "scripts": {
+    "start": "node server/app.js"
   }
 }

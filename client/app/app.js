@@ -2,6 +2,7 @@
  * Created by xhitedev on 12/13/15.
  */
 
+var mongoose = require('mongoose');
 var express = require('express');
 var app = module.exports = express();
 
