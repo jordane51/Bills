@@ -3,12 +3,13 @@
  */
 
 var express = require('express');
-var app = module.exports =  express();
 
 var config = require('./config');
 
 var api = require('./api');
 var client = require('./client');
+
+var app = module.exports =  express();
 
 app.use(api);
 app.use(client);
