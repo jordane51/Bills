@@ -37,6 +37,9 @@
     "passport": "^0.3.2",
     "watchify": "^3.6.1"
   },
+  "scripts": {
+    "start": "node server/app.js"
+  },
   "devDependencies": {
     "supervisor": "^0.9.1"
   }
