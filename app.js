@@ -3,15 +3,18 @@
  */
 
 var express = require('express');
-var app = module.exports =  express();
+
+var config = require('./config');
 
 var api = require('./api');
 var client = require('./client');
 
+var app = module.exports =  express();
+
 app.use(api);
 app.use(client);
 
-var server = app.listen(3000, function () {
+var server = app.listen(config.port, config.ip, function () {
     var host = server.address().address;
     var port = server.address().port;
 
