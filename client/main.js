@@ -27,8 +27,12 @@ function controller($router) {
         {id: "account", name: "Compte"}
     ];
     this.active = this.navs[0];
+    this.toggled = false;
     this.setActive = function(current){
         this.active = current;
+    };
+    this.toggle = function(){
+        this.toggled = !this.toggled;
     };
 }
 

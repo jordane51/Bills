@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Bills</title>
@@ -13,33 +14,52 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="/build/bundle.js"></script>
 </head>
-<body class="container" ng-app="billsApp" ng-controller="AppController as appCtrl">
+<body ng-app="billsApp" ng-controller="AppController as appCtrl">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default modified">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" type="button" class="navbar-toggle" aria-expanded="false">
+            <button ng-click="appCtrl.toggle()" type="button" class="navbar-toggle left">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img alt="Brand" width="20" height="20" src="resources/favicon.png">
-            </a>
-            <a class="navbar-brand" href="/">
                 Bills
             </a>
-        </div>
-        <div class=" navbar-collapse" uib-collapse="navCollapsed">
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="nav in ::appCtrl.navs" ng-class="{'active': appCtrl.active==nav}"><a ng-click="appCtrl.setActive(nav)" ng-link="{{nav.id}}">{{nav.name}}</a></li>
-            </ul>
         </div>
     </div>
 </nav>
 
-<div ng-viewport></div>
+<div id="wrapper" ng-class="{'toggled': appCtrl.toggled}">
+
+    <nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li ng-repeat="nav in ::appCtrl.navs" ng-class="{'active': appCtrl.active==nav}">
+                    <a ng-click="appCtrl.setActive(nav)" ng-link="{{nav.id}}">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+    </nav>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div ng-viewport></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
 
 </body>
 
