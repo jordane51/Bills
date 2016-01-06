@@ -3,12 +3,6 @@
   "version": "0.0.1",
   "description": "Awesome MEAN app that helps you manage your bills and share them with others. Web course project (J1IN9M13).",
   "main": "app.js",
-  "scripts": {
-    "start": "node .",
-    "restart": "supervisor .",
-    "test": "karma",
-    "watch": "watchify -v --debug client/public/main.js -o client/public/build/bundle.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jordane51/Bills.git"
@@ -37,10 +31,13 @@
     "passport": "^0.3.2",
     "watchify": "^3.6.1"
   },
-  "scripts": {
-    "start": "node server/app.js"
-  },
   "devDependencies": {
     "supervisor": "^0.9.1"
+  },
+  "scripts": {
+    "start": "node server/app.js",
+    "restart": "supervisor server/app.js",
+    "test": "karma",
+    "watch": "watchify -v --debug client/main.js -o client/build/bundle.js"
   }
 }
