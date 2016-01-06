@@ -6,6 +6,7 @@ var express = require('express');
 var app = module.exports = express();
 var config = require('./config');
 var path = require('path');
+var mongoose = require('mongoose');
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -26,3 +27,21 @@ app.get('/*', function(req, res){
 var server = app.listen(config.port, config.ip, function () {
 	console.log('Server listening on http://%s:%s', config.ip, config.port);
 });
+
+/*
+// Database connection.
+var db = mongoose.connect(url, function(err){
+	if(err) { throw err}
+});*/
+/*
+// Schemas (entities).
+var Schema = mongoose.Schema;
+
+var UserSchema = new Schema({
+	name: String,
+    email: String,
+    passwd: String
+});*/
+
+// Si on a utilisé mongoose.connect()
+//mongoose.connection.close();
