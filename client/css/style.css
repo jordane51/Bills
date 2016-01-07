@@ -26,7 +26,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #fafdfd;
+    background: #F5F5F5;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -69,10 +69,11 @@
     text-decoration: none;
 }
 
-.sidebar-nav > .active > a,
+.sidebar-nav > .active > a{
+	color: #ffffff;
+}
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fafdfd;
 }
 
 .sidebar-nav li a:active,
@@ -136,7 +137,8 @@
 /* NavBar color */
 .navbar-default {
     background-color: #63d994;
-    border-color: #b9f7d7;
+    border: 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 .navbar-default .navbar-brand {
     color: #fafdfd;
