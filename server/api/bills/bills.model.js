@@ -7,7 +7,7 @@ var BillSchema = new Schema({
 		title: String,
 		description:String,
 		amount: Number,
-		group: [{userName: String, userEmail: String}]
+		group: {grouName: String}
 	});
 
 module.exports = mongoose.model('Bill', BillSchema);
