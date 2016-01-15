@@ -30,6 +30,7 @@ var server = app.listen(config.port, config.ip, function () {
 
 /*
 // Database connection.
+var url = "mongodb://localhost/jordane51_Bills";
 var db = mongoose.connect(url, function(err){
 	if(err) { throw err}
 });*/

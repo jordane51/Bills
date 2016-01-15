@@ -10,7 +10,7 @@ exports.index = function(req, res) {
 };
 
 exports.findByUser = function(req, res) {
-  Project.find({"group.userEmail" :req.params.userEmail},function (err, bills) {
+  Bill.find({"group.userEmail" :req.params.userEmail},function (err, bills) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(bills);
   });
