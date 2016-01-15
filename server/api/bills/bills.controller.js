@@ -9,8 +9,8 @@ exports.index = function(req, res) {
   });
 };
 
-exports.findByUser = function(req, res) {
-  Project.find({"group.userEmail" :req.params.userEmail},function (err, bills) {
+exports.findByGroup = function(req, res) {
+  Bill.find({"group.groupName" :req.params.groupName},function (err, bills) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(bills);
   });
