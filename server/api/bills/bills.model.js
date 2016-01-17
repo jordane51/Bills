@@ -5,9 +5,10 @@ var Schema = mongoose.Schema;
 
 var BillSchema = new Schema({
 		title: String,
-		description:String,
+		//description:String,
 		amount: Number,
-		group: {grouName: String}
+		//group: {grouName: String}
+		group: [{userName: String, userEmail: String}]
 	});
 
 module.exports = mongoose.model('Bill', BillSchema);
