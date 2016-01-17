@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var GroupSchema = new Schema({
 		nameGroup: String,
-		users: [{userName: String, userEmail: String}]
+		members: [{pseudo: String, email: String}]
 	});
 
 module.exports = mongoose.model('Group', GroupSchema);
