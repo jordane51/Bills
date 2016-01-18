@@ -11,7 +11,8 @@ function modalController($uibModalInstance, bill) {
         name: bill.name,
         email: bill.email,
         amount: bill.amount,
-        description: bill.description
+        description: bill.description,
+        share: bill.share
     };
     this.submit = function(){
         $uibModalInstance.close(this.bill);
@@ -25,8 +26,8 @@ modalController.$inject = ['$uibModalInstance', 'bill'];
 
 function controller($uibModal, $log) {
     this.bills = [
-        {name: 'John', amount:10, description:'food'},
-        {name: 'Doe', amount:20, description:'dog food'}
+        {name: 'John', amount:10, description:'food', share: 1},
+        {name: 'Doe', amount:20, description:'dog food', share: 0.2}
     ];
     function getModalInstance(bill){
         return $uibModal.open({

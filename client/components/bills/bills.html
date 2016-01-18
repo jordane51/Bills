@@ -27,6 +27,12 @@
                     <input class="col-sm-9" id="inputAmount" type="number" ng-model="form.bill.amount" />€
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2" for="inputShare">
+                        Part:
+                    </label>
+                    <input class="col-sm-9" id="inputShare" type="number" step="0.1" ng-model="form.bill.share" />
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2" for="inputDescription">
                         Description:
                     </label>
@@ -35,19 +41,19 @@
             </form>
         </div>
         <div class="modal-footer">
-            <input type="button" ng-click="form.cancel()" value="Annuler" />
-            <input type="submit" ng-click="form.submit()" value="Confirmer" />
+            <input class="btn btn-default"  type="button" ng-click="form.cancel()" value="Annuler" />
+            <input class="btn btn-primary"  type="submit" ng-click="form.submit()" value="Confirmer" />
         </div>
     </script>
     <table class="table table-hover">
         <tr>
             <th>Personne</th>
-            <th>Montant</th>
+            <th>Montant (dû)</th>
             <th>Description</th>
         </tr>
         <tr ng-repeat="bill in billsCtrl.bills track by $index" ng-click="billsCtrl.update($index)">
             <td>{{bill.name}}</td>
-            <td>{{bill.amount}} €</td>
+            <td>{{bill.amount}} ({{bill.amount*bill.share}}) €</td>
             <td>{{bill.description}}</td>
         </tr>
     </table>
