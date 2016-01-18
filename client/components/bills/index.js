@@ -8,7 +8,7 @@ var bills = angular.module('bills', []);
 
 function controller() {
     this.bills = [
-        {name: 'John', amount:100, description:'food'},
+        {name: 'John', amount:10, description:'food'},
         {name: 'Doe', amount:20, description:'dog food'}
     ];
 }

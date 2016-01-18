@@ -13,10 +13,8 @@ var recent = require('./components/recent');
 var account = require('./components/account');
 var login = require('./components/login');
 var register = require('./components/register');
-<<<<<<< HEAD
 var group = require('./components/group');
-=======
->>>>>>> 021156de60d2fe371a507431035bd993803999b6
+
 
 var billsApp = angular.module('billsApp', [
     bootstrap,
@@ -24,10 +22,7 @@ var billsApp = angular.module('billsApp', [
     bills,
     recent,
     account,
-<<<<<<< HEAD
     group,
-=======
->>>>>>> 021156de60d2fe371a507431035bd993803999b6
     login,
     register
 ]);
@@ -37,10 +32,7 @@ function controller($router) {
         {id: "bills", name: "Dépenses"},
         {id: "recent", name: "Historique"},
         {id: "account", name: "Compte"},
-<<<<<<< HEAD
         {id: "group", name: "Group" },
-=======
->>>>>>> 021156de60d2fe371a507431035bd993803999b6
         {id: "login", name: "Login"},
         {id: "register", name: "Register"}
     ];
@@ -49,11 +41,7 @@ function controller($router) {
     this.setActive = function(current){
         this.active = current;
     };
-<<<<<<< HEAD
-     this.toggle = function(){
-=======
     this.toggle = function(){
->>>>>>> 021156de60d2fe371a507431035bd993803999b6
         this.toggled = !this.toggled;
     };
 }
@@ -64,10 +52,7 @@ controller.$routeConfig = [
     { path: '/', component: "bills" },
     { path: '/recent', component: "recent" },
     { path: '/account', component: "account" },
-<<<<<<< HEAD
     { path: '/group', component: "group" },
-=======
->>>>>>> 021156de60d2fe371a507431035bd993803999b6
     { path: '/login', component: "login" },
     { path: '/register', component: "register" }
 ];
