@@ -12,7 +12,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 // Routing API requests to their corresponding module
 app.use('/api/bills', require('./api/bills'));
-// app.use('/api/users', require('./api/users'));
+//app.use('/api/group', require('./api/group'));
 // app.use('/api/logs', require('./api/logs'));
 
 // Expose all the files in the client directory
@@ -30,6 +30,7 @@ var server = app.listen(config.port, config.ip, function () {
 
 /*
 // Database connection.
+var url = "mongodb://localhost/jordane51_Bills";
 var db = mongoose.connect(url, function(err){
 	if(err) { throw err}
 });*/

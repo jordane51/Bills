@@ -13,6 +13,8 @@ var recent = require('./components/recent');
 var account = require('./components/account');
 var login = require('./components/login');
 var register = require('./components/register');
+var group = require('./components/group');
+
 
 var billsApp = angular.module('billsApp', [
     bootstrap,
@@ -20,6 +22,7 @@ var billsApp = angular.module('billsApp', [
     bills,
     recent,
     account,
+    group,
     login,
     register
 ]);
@@ -29,6 +32,7 @@ function controller($router) {
         {id: "bills", name: "Dépenses"},
         {id: "recent", name: "Historique"},
         {id: "account", name: "Compte"},
+        {id: "group", name: "Group" },
         {id: "login", name: "Login"},
         {id: "register", name: "Register"}
     ];
@@ -48,6 +52,7 @@ controller.$routeConfig = [
     { path: '/', component: "bills" },
     { path: '/recent', component: "recent" },
     { path: '/account', component: "account" },
+    { path: '/group', component: "group" },
     { path: '/login', component: "login" },
     { path: '/register', component: "register" }
 ];
