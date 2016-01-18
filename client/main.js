@@ -37,10 +37,10 @@ function controller($router) {
         {id: "register", name: "Register"}
     ];
     this.active = this.navs[0];
-    this.toggled = false;
     this.setActive = function(current){
         this.active = current;
     };
+    this.toggled = false;
     this.toggle = function(){
         this.toggled = !this.toggled;
     };

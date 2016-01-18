@@ -1,3 +1,30 @@
 <div ng-controller="AccountController as accountCtrl">
-    account 
+    <form novalidate class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3" for="inputName">
+                Nom:
+            </label>
+            <input class="col-sm-9" type="text" id="inputName" ng-model="accountCtrl.user.name" />
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3" for="inputEmail">
+                E-mail:
+            </label>
+            <input class="col-sm-9" id="inputEmail" type="email" ng-model="accountCtrl.user.email" />
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3" for="inputPassword">
+                Password:
+            </label>
+            <input class="col-sm-9" id="inputPassword" type="password" ng-model="accountCtrl.user.password" />
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3" for="inputDescription">
+                Description:
+            </label>
+            <input class="col-sm-9" id="inputDescription" type="text" ng-model="accountCtrl.user.description" value="male" />
+        </div>
+    </form>
+    <input class="btn btn-default"  type="button" ng-click="accountCtrl.cancel()" value="Annuler" />
+    <input class="btn btn-primary"  type="submit" ng-click="accountCtrl.submit()" value="Confirmer" />
 </div>

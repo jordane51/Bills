@@ -1,13 +1,59 @@
 <div ng-controller="BillsController as billsCtrl">
+    <button ng-click="billsCtrl.add()" type="button" class="btn btn-primary">
+        Ajouter
+    </button>
+    <script type="text/ng-template" id="modalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Ajouter une facture</h3>
+        </div>
+        <div class="modal-body">
+            <form novalidate class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputName">
+                        Nom:
+                    </label>
+                    <input class="col-sm-9" type="text" id="inputName" ng-model="form.bill.name" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputEmail">
+                        E-mail:
+                    </label>
+                    <input class="col-sm-9" id="inputEmail" type="email" ng-model="form.bill.email" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputAmount">
+                        Montant:
+                    </label>
+                    <input class="col-sm-9" id="inputAmount" type="number" ng-model="form.bill.amount" />€
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputShare">
+                        Part:
+                    </label>
+                    <input class="col-sm-9" id="inputShare" type="number" step="0.1" ng-model="form.bill.share" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputDescription">
+                        Description:
+                    </label>
+                    <input class="col-sm-9" id="inputDescription" type="text" ng-model="form.bill.description" value="male" />
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <input class="btn btn-default"  type="button" ng-click="form.cancel()" value="Annuler" />
+            <input class="btn btn-primary"  type="submit" ng-click="form.submit()" value="Confirmer" />
+        </div>
+    </script>
     <table class="table table-hover">
         <tr>
             <th>Personne</th>
-            <th>Argent dû</th>
+            <th>Montant (dû)</th>
             <th>Description</th>
         </tr>
-        <tr ng-repeat="bill in billsCtrl.bills">
+        <tr ng-repeat="bill in billsCtrl.bills track by $index" ng-click="billsCtrl.update($index)">
             <td>{{bill.name}}</td>
-            <td>{{bill.amount}}</td>
+            <td>{{bill.amount}} ({{bill.amount*bill.share}}) €</td>
             <td>{{bill.description}}</td>
         </tr>
     </table>
