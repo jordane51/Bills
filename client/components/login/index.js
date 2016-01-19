@@ -4,7 +4,7 @@
 
 var angular = require('angular');
 
-var login = angular.module('login', []).controller('LoginController', ['$scope', function($scope) {
+var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', function($scope, $http) {
 	$scope.user = {
 		email: "",
 		password: ""
@@ -16,8 +16,16 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 		if(!$scope.user.email || !$scope.user.password){
 			$scope.loginError = true;
 		} else {
-			// do the login
-			
+			console.log("Trying to log in user: " + user.email);
+			$http({
+				url: '/auth/login',
+				method: 'POST',
+				data: {email: user.email, password: user.password}}
+				).then(function(res){
+					console.log(res);
+				}, function(res){
+					
+				});
 		}
 	}
 	

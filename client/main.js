@@ -14,6 +14,7 @@ var account = require('./components/account');
 var login = require('./components/login');
 var register = require('./components/register');
 var group = require('./components/group');
+var user = require('./components/user/');
 
 
 var billsApp = angular.module('billsApp', [
@@ -24,7 +25,8 @@ var billsApp = angular.module('billsApp', [
     account,
     group,
     login,
-    register
+    register,
+    user
 ]);
 
 function controller($router) {
@@ -33,8 +35,6 @@ function controller($router) {
         {id: "recent", name: "Historique"},
         {id: "account", name: "Compte"},
         {id: "group", name: "Group" },
-        {id: "login", name: "Login"},
-        {id: "register", name: "Register"}
     ];
     this.active = this.navs[0];
     this.setActive = function(current){
