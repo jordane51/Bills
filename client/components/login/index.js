@@ -16,8 +16,16 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 				method: 'POST',
 				data: {email: user.email, password: user.password}}
 				).then(function(res){
-					user.connect(res.data.token);
-					$location.path ('/');
+					$http({
+						url: '/api/users/me',
+						method: 'GET',
+						headers: {'Authorization': res.data.token}}
+						).then(function(resMe){
+							user.connect(res.data.token, resMe.data.name, resMe.data.email);
+							$location.path ('/');
+						}, function(res){
+							$scope.loginError = true;
+						});	
 				}, function(res){
 					$scope.loginError = true;
 				});

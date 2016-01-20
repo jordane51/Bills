@@ -3,11 +3,9 @@ var app = express();
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var BearerStrategy = require('passport-http-bearer').Strategy;
-var User = require('./user.model');
-var auth = require('./auth');
-
 var router = express.Router();
+
+var auth = require('./auth');
 
 // Routes
 router.post('/login', auth.checkUser, auth.updateToken);

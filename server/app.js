@@ -39,6 +39,7 @@ mongoose.connection.once('open', function(){
 
 // Routing API requests to their corresponding module
 app.use('/api/bills', require('./api/bills'));
+app.use('/api/users', require('./api/users'));
 //app.use('/api/group', require('./api/group'));
 // app.use('/api/logs', require('./api/logs'));
 
@@ -54,9 +55,9 @@ app.get('/*', function(req, res){
 });
 
 // TEMP - remove when postInstall is done
-var User = require('./auth/user.model');
+var User = require('./api/users/user.model');
 User.find({}).remove(function(){});
-var userT =  User.create({email: 'test@test.com', password: User.encryptPassword('password')});
+var userT =  User.create({email: 'test@test.com', password: User.encryptPassword('password'), token: 'AOGl2hvy1kH/wuvaZzLlTCF97ZmJqd89zTw6xv6PPenLuRHpldlpOA==', name: 'Demo user'});
 
 // Starting server
 var server = app.listen(config.port, config.ip, function () {

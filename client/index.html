@@ -29,7 +29,7 @@
         </div>
         <div class="navbar-form navbar-right">
             <p ng-show="user.isConnected" class="navbar-text">
-                Connected as John
+                Connected as {{user.name}}
             </p>
             <a ng-hide="user.isConnected" role="button" class="btn btn-primary navbar-btn" href="/login">
                 Login

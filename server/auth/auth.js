@@ -1,4 +1,4 @@
-var User = require('./user.model');
+var User = require('../api/users/user.model');
 
 exports.checkUser = function(req, res, next){
 	var email = req.body.email;
@@ -29,14 +29,13 @@ exports.updateToken = function(req, res){
 	});
 }
 
-exports.isTokenValid = function(req, res, next){
+exports.isConnected = function(req, res, next){
 	if(!req.headers["authorization"]){
 		res.status(403);
 		res.send("Missing Authorization header");
 	} else {
 		User.findOne({ token: req.headers["authorization"] }, function(err, user){
 		if(user){
-			console.log(user.token);
 			next();
 		} else {
 			res.status(403);
