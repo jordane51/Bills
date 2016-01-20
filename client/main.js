@@ -14,6 +14,7 @@ var account = require('./components/account');
 var login = require('./components/login');
 var register = require('./components/register');
 var group = require('./components/group');
+var user = require('./components/user/');
 
 
 var billsApp = angular.module('billsApp', [
@@ -24,17 +25,16 @@ var billsApp = angular.module('billsApp', [
     account,
     group,
     login,
-    register
+    register,
+    user
 ]);
 
-function controller($router) {
+function controller($scope, $router, user) {
     this.navs = [
         {id: "bills", name: "Dépenses"},
         {id: "recent", name: "Historique"},
         {id: "account", name: "Compte"},
         {id: "group", name: "Group" },
-        {id: "login", name: "Login"},
-        {id: "register", name: "Register"}
     ];
     this.active = this.navs[0];
     this.setActive = function(current){
@@ -44,9 +44,10 @@ function controller($router) {
     this.toggle = function(){
         this.toggled = !this.toggled;
     };
+    $scope.user = user;
 }
 
-controller.$inject = ['$router'];
+controller.$inject = ['$scope', '$router', 'user'];
 
 controller.$routeConfig = [
     { path: '/', component: "bills" },
@@ -57,4 +58,5 @@ controller.$routeConfig = [
     { path: '/register', component: "register" }
 ];
 
+billsApp.service('UserService', user);
 billsApp.controller('AppController', controller);
