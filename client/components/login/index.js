@@ -4,7 +4,7 @@
 
 var angular = require('angular');
 
-var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', '$location', 'user', function($scope, $http, $location, user) {	
+var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', '$location', '$cookies', 'user', function($scope, $http, $location, $cookies, user) {	
 	$scope.loginError = false;
 
 	$scope.update = function(user){
@@ -18,6 +18,7 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 				data: {email: user.email, password: user.password}}
 				).then(function(res){
 					user.isConnected = true;
+					user.token = res.data.token;
 					$location.path ('/');
 				}, function(res){
 					$scope.loginError = true;

@@ -7,6 +7,7 @@ var angular = require('angular');
 var bootstrap = require('angular-ui-bootstrap');
 
 require('angular-new-router');
+require('angular-cookies');
 
 var bills = require('./components/bills');
 var recent = require('./components/recent');
@@ -20,6 +21,7 @@ var user = require('./components/user/');
 var billsApp = angular.module('billsApp', [
     bootstrap,
     'ngNewRouter',
+    'ngCookies',
     bills,
     recent,
     account,
