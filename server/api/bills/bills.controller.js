@@ -52,11 +52,6 @@ exports.destroy = function(req, res) {
   });
 };
 
-exports.list = function(req, res){
-	console.log('Do the DB stuff here');
-	res.send("OK");
-}
-
 function handleError(res, err) {
   return res.status(500).send(err);
 }

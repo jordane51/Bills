@@ -3,9 +3,9 @@ var controller = require('./bills.controller');
 
 var router = express.Router();
 
-//router.get('/', controller.index);
-router.get('/', controller.list);
-router.get('/bills/:id', controller.show);
-router.post('/bill', controller.create);
+router.get('/', controller.index);
+router.get('/:id', controller.show);
+router.post('/', controller.create);
+router.put('/:id', controller.update);
 
 module.exports = router;
