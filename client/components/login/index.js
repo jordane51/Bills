@@ -4,11 +4,9 @@
 
 var angular = require('angular');
 
-var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', 'user', function($scope, $http, user) {	
+var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', '$location', 'user', function($scope, $http, $location, user) {	
 	$scope.loginError = false;
-	console.log(user.isConnected);
-	
-	
+
 	$scope.update = function(user){
 		if(!$scope.user.email || !$scope.user.password){
 			$scope.loginError = true;
@@ -20,6 +18,7 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 				data: {email: user.email, password: user.password}}
 				).then(function(res){
 					user.isConnected = true;
+					$location.path ('/');
 				}, function(res){
 					$scope.loginError = true;
 				});
