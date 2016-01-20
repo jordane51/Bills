@@ -2,6 +2,9 @@
 	<div class="alert alert-info" role="alert">
 		Demo user: test@test.com password
 	</div>
+	<div ng-show="user.showDisconnectedInfo()" class="alert alert-success" role="alert">
+		Successfully disconnected.
+	</div>
 	<div ng-show="loginError" class="alert alert-danger" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span class="sr-only">Error:</span>

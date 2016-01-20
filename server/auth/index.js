@@ -11,7 +11,7 @@ var router = express.Router();
 
 // Routes
 router.post('/login', auth.checkUser, auth.updateToken);
-router.post('/register', auth.isConnected, function(req, res){res.send("Yep")});
+router.post('/register', auth.createUser, auth.updateToken);
 
 module.exports = router;
 
