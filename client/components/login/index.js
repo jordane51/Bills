@@ -17,8 +17,7 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 				method: 'POST',
 				data: {email: user.email, password: user.password}}
 				).then(function(res){
-					user.isConnected = true;
-					user.token = res.data.token;
+					user.connect(res.data.token);
 					$location.path ('/');
 				}, function(res){
 					$scope.loginError = true;

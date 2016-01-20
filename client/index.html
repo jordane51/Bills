@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="/build/bundle.js"></script>
 </head>
-<body ng-app="billsApp" ng-controller="AppController as appCtrl">
+<body ng-app="billsApp" ng-controller="AppController as appCtrl" data-ng-init="user.refreshUserStatus()">
 
 <nav class="navbar navbar-default modified">
     <div class="container-fluid">

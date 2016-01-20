@@ -15,9 +15,18 @@ var user = angular.module('user', []).factory('user', ['$cookies', function($coo
 		diconnect: function(){
 			this.hasDisconnected = true;
 			this.isConnected = false;
+			$cookies.remove('connectedUser');
 		},
-		checkIfConncted: function(){
-			
+		connect: function(token){
+			this.isConnected = true;
+			this.token = token;
+			$cookies.put('connectedUser', token);
+		},
+		refreshUserStatus: function(){
+			if($cookies.get('connectedUser')){
+				this.isConnected = true;
+				this.token = $cookies.get('connectedUser');
+			}
 		}
 	};
 }]);
