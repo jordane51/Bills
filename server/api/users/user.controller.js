@@ -11,6 +11,28 @@ exports.show = function(req, res){
 	})
 };
 
+exports.user = function(req, res){
+	User.findOne({'_id': req.params.id}, '_id email name', function(err, user){
+		if(user && !err){
+			res.send(user)
+		} else {
+			res.status(500);
+			res.send('Error');
+		}
+	})
+};
+
+exports.findByMail = function(req, res){
+	User.findOne({'email': req.params.email}, '_id email name', function(err, user){
+		if(user && !err){
+			res.send(user)
+		} else {
+			res.status(500);
+			res.send('Error');
+		}
+	})
+};
+
 exports.updatePassword = function(req, res){
 	if(!req.body.password){
 		res.status(500);
