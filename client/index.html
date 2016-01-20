@@ -28,7 +28,7 @@
             </a>
         </div>
         <div class="navbar-form navbar-right">
-            <p ng-show="user" class="navbar-text">
+            <p ng-show="user.isConnected" class="navbar-text">
                 Connected as John
             </p>
             <a role="button" class="btn btn-primary navbar-btn" href="/login">
@@ -46,7 +46,7 @@
     <nav>
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul ng-show="user" class="sidebar-nav">
+            <ul ng-show="user.isConnected" class="sidebar-nav">
                 <li ng-repeat="nav in ::appCtrl.navs" ng-class="{'active bg-primary': appCtrl.active==nav}">
                     <a ng-click="appCtrl.setActive(nav)" ng-link="{{nav.id}}">{{nav.name}}</a>
                 </li>

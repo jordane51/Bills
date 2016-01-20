@@ -4,13 +4,10 @@
 
 var angular = require('angular');
 
-var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', function($scope, $http) {
-	$scope.user = {
-		email: "",
-		password: ""
-	}
-	
+var login = angular.module('login', []).controller('LoginController', ['$scope', '$http', 'user', function($scope, $http, user) {	
 	$scope.loginError = false;
+	console.log(user.isConnected);
+	
 	
 	$scope.update = function(user){
 		if(!$scope.user.email || !$scope.user.password){
@@ -22,13 +19,12 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 				method: 'POST',
 				data: {email: user.email, password: user.password}}
 				).then(function(res){
-					console.log(res);
+					user.isConnected = true;
 				}, function(res){
-					
+					$scope.loginError = true;
 				});
 		}
 	}
-	
 }]);
 
 

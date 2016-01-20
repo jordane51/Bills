@@ -29,7 +29,7 @@ var billsApp = angular.module('billsApp', [
     user
 ]);
 
-function controller($router) {
+function controller($scope, $router, user) {
     this.navs = [
         {id: "bills", name: "Dépenses"},
         {id: "recent", name: "Historique"},
@@ -44,9 +44,10 @@ function controller($router) {
     this.toggle = function(){
         this.toggled = !this.toggled;
     };
+    $scope.user = user;
 }
 
-controller.$inject = ['$router'];
+controller.$inject = ['$scope', '$router', 'user'];
 
 controller.$routeConfig = [
     { path: '/', component: "bills" },
@@ -57,4 +58,5 @@ controller.$routeConfig = [
     { path: '/register', component: "register" }
 ];
 
+billsApp.service('UserService', user);
 billsApp.controller('AppController', controller);

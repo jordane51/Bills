@@ -1,6 +1,6 @@
 var angular = require('angular');
 
-var user = angular.module('user', []).factory('UserService', function(){
+var user = angular.module('user', []).factory('user', function(){
 	return {isConnected: false};
 });
 
