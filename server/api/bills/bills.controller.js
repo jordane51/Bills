@@ -35,13 +35,18 @@ exports.update = function(req, res) {
   if(req.body._id) {
 	  delete req.body.id;
   }
-  var p = new Bill(req.body);
-  Bill.findOneAndUpdate(req.params.id, p, {upsert: true}, function(err, doc){
-	  p._id = doc._id;
+  Bill.findOneAndUpdate(req.params.id, function(err, bill){
 	  if(err){
 		  return handleError(res, err);
 	  }
-	  return res.status(200).json(p);
+    if(!bill){ 
+      return res.status(404).send('Not Found'); 
+    }
+    var updated = _.merge(bill, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.status(200).json(bill);
+    });
   });
 };
 
