@@ -11,7 +11,6 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 		if(!$scope.user.email || !$scope.user.password){
 			$scope.loginError = true;
 		} else {
-			console.log("Trying to log in user: " + user.email);
 			$http({
 				url: '/auth/login',
 				method: 'POST',
