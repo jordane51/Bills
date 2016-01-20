@@ -33,15 +33,13 @@ exports.create = function(req, res) {
 
 exports.update = function(req, res) {
   if(req.body._id) {
-	  delete req.body.id;
+	  delete req.body._id;
   }
-  var p = new Backlog(req.body);
-  Backlog.findOneAndUpdate(req.params.id, p, {upsert: true}, function(err, doc){
-	  p._id = doc._id;
+  Bill.findOneAndUpdate({'_id': req.params.id}, req.body, {'new': true}, function(err, doc){
 	  if(err){
 		  return handleError(res, err);
 	  }
-	  return res.status(200).json(p);
+	  return res.status(200).json(doc);
   });
 };
 
