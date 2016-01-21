@@ -45,5 +45,6 @@
     "restart": "supervisor server/app.js",
     "test": "karma",
     "watch": "watchify -v --debug client/main.js -o client/build/bundle.js"
+    "postinstall": "scripts/postinstall.js"
   }
 }
