@@ -1,3 +1,13 @@
 <div ng-controller="RecentController as recentCtrl">
-    recent
+    <div ng-show="errorMessage" class="alert alert-danger" role="alert">
+		{{errorMessage}}
+	</div>
+    <div ng-hide="logs" class="alert alert-info" role="alert">
+		No recent activity.
+	</div>
+	<table ng-show="logs" class="table">
+		<tr><th>Action</th></tr>
+		<tr ng-repeat="log in logs"><td>{{log.username}} {{log.action}} the bill {{log.title}} <b ng-show="log.amount">${{log.amount}}</b></td></tr>
+
+	</table>
 </div>
