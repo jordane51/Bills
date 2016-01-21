@@ -1,0 +1,53 @@
+<div ng-controller="BillsController as billsCtrl">
+    <button ng-click="billsCtrl.add()" type="button" class="btn btn-primary">
+        Ajouter
+    </button>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Personnes
+            </th>
+            <th>
+                Montant
+                <span class="badge">
+                    dû
+                </span>
+            </th>
+            <th>
+                Je dois
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        <tr ng-repeat="bill in billsCtrl.bills track by $index" ng-click="billsCtrl.update($index)">
+            <td>
+                {{bill.date | date:'d MMM yy'}}
+            </td>
+            <td>
+                {{bill.name}},
+                <div>{{bill.name}}</div>
+            </td>
+            <td>
+                {{bill.amount}}
+                <span class="badge">
+                    {{bill.amount*bill.share}}
+                </span>
+                €
+            </td>
+            <td>
+                {{bill.owe}}
+                €
+            </td>
+            <td>
+                {{bill.description}}
+                <button ng-click="billsCtrl.delete($index)" type="button" class="material-icons close" aria-label="Close">
+                    close
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

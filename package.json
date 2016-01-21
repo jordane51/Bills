@@ -1,0 +1,49 @@
+{
+  "name": "bills",
+  "version": "0.0.1",
+  "description": "Awesome MEAN app that helps you manage your bills and share them with others. Web course project (J1IN9M13).",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordane51/Bills.git"
+  },
+  "keywords": [
+    "bills",
+    "mean",
+    "sharing",
+    "web",
+    "angular"
+  ],
+  "author": "jordane51,xhite",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/jordane51/Bills/issues"
+  },
+  "homepage": "https://github.com/jordane51/Bills#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-new-router": "^0.5.3",
+    "angular-cookies": "^1.2.19",
+    "angular-ui-bootstrap": "^0.14.3",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "kerberos": "0.0.17",
+    "mongodb": "~2.0",
+    "mongoose": "^4.3.3",
+    "passport": "^0.3.2",
+    "passport-http-bearer": "^1.0.1",
+    "body-parser": "^1.12.2",
+    "cookie-parser": "^1.4.1",
+    "express-session": "^1.13.0",
+    "watchify": "^3.6.1"
+  },
+  "devDependencies": {
+    "supervisor": "^0.9.1"
+  },
+  "scripts": {
+    "start": "node server/app.js",
+    "restart": "supervisor server/app.js",
+    "test": "karma",
+    "watch": "watchify -v --debug client/main.js -o client/build/bundle.js"
+  }
+}

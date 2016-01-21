@@ -1,0 +1,23 @@
+<div ng-controller="GroupController as groupCtrl">
+   <div ng-show="groupError" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		Please fill all the fields then submit again.
+	</div>
+	<form name="groupForm" novalidate ng-submit="send()">
+		<div class="form-group has-feedback">
+			<label for="nameGroup">Name</label>
+			<input type="nameGroup" class="form-control" id="nameGroup" name="nameGroupe" placeholder="nameGroup" ng-model="group.nameGroup" required="">
+		</div>
+		<div class="form-group has-feedback">
+			<label for="email">Add Member</label>
+			<div class="form-signin" ng-repeat="number in MemberNumber"> 
+				<input type="pseudo" class="form-control" id="pseudo" name="pseudo" placeholder="pseudo" ng-model="groups.membres[number].pseudo" required="">
+				<input type="email" class="form-control" id="email" name="userEmail" placeholder="email" ng-model="groups.membres[number].email" required="">
+				<span ng-show="groupForm.email.$error.email" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		<!-- <a href ng-click="add()"> Ajouter un autre membre </a> <br>-->
+		<button type="submit" class="btn btn-primary" >Send</button>
+	</form>
+</div>

@@ -1,0 +1,87 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bills</title>
+    <link rel="icon" type="image/png" href="resources/favicon.png" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="/build/bundle.js"></script>
+    <script src="https://code.angularjs.org/1.4.8/i18n/angular-locale_fr-fr.js"></script>
+</head>
+<body ng-app="billsApp" ng-controller="AppController as appCtrl" data-ng-init="user.refreshUserStatus()">
+
+<nav class="navbar navbar-default modified">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button ng-click="appCtrl.toggle()" type="button" class="navbar-toggle left">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                Bills
+            </a>
+        </div>
+        <div class="navbar-form navbar-right">
+            <p ng-show="user.isConnected" class="navbar-text">
+                Connected as {{user.name}}
+            </p>
+            <a ng-hide="user.isConnected" role="button" class="btn btn-primary navbar-btn" href="/login">
+                Login
+            </a>
+            <a ng-show="user.isConnected" ng-click="user.diconnect()" role="button" class="btn btn-danger navbar-btn" href="/login">
+                Log out
+            </a>
+            <a ng-hide="user.isConnected" role="button" class="btn btn-default navbar-btn" href="/register">
+                Sign up
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div id="wrapper" ng-class="{'toggled': appCtrl.toggled}">
+
+    <nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul ng-show="user.isConnected" class="sidebar-nav">
+                <li ng-repeat="nav in ::appCtrl.navs" ng-class="{'active bg-primary': appCtrl.active==nav}">
+                    <a ng-click="appCtrl.setActive(nav)" ng-link="{{nav.id}}">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+    </nav>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div ng-viewport="container"></div>
+
+                    <div ng-viewport="popup"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+
+</body>
+
+</html>

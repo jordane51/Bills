@@ -1,0 +1,25 @@
+<div ng-controller="LoginController as loginCtrl">
+	<div class="alert alert-info" role="alert">
+		Demo user: test@test.com password
+	</div>
+	<div ng-show="user.showDisconnectedInfo()" class="alert alert-success" role="alert">
+		Successfully disconnected.
+	</div>
+	<div ng-show="loginError" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		Invalid email adress or password. Please check your identifiers and try again.
+	</div>
+	<form name="loginForm" novalidate>
+		<div class="form-group has-feedback">
+			<label for="email">Email address</label>
+			<input type="email" class="form-control" id="email" name="email" placeholder="email" ng-model="user.email" required="">
+			<span ng-show="loginForm.email.$error.email" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="password" ng-model="user.password" required="">
+		</div>
+		<button type="submit" class="btn btn-default" ng-click="update(user)">Send</button>
+	</form>
+</div>
