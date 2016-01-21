@@ -1,4 +1,5 @@
 var Bill = require('./bills.model');
+var user = require('../users/user.controller');
 /**
  * Get list of bills
  */
@@ -33,14 +34,26 @@ exports.show = function (req, res) {
   });
 };
 
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
   Bill.create(req.body, function(err, bill) {
     if(err) { return handleError(res, err); }
+    
+    // for the logs
+    user.connectedUser(req, bill, function(req, bill, user){
+	    req.billsLog = {};
+	    req.billsLog.action = 'create';
+	    req.billsLog.billTitle = bill.title;
+	    req.billsLog.userName = user.name;
+	    req.billsLog.group = bill.group;
+	    
+	    next();
+    });
+    
     return res.status(201).json(bill);
   });
 };
 
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   if(req.body._id) {
 	  delete req.body._id;
   }
@@ -48,14 +61,41 @@ exports.update = function(req, res) {
 	  if(err){
 		  return handleError(res, err);
 	  }
+	  
+	// for the logs
+	var bill = doc;
+    user.connectedUser(req, bill, function(req, bill, user){
+	    req.billsLog = {};
+	    req.billsLog.action = 'reimburse';
+	    req.billsLog.billTitle = bill.title;
+	    req.billsLog.userName = user.name;
+	    req.billsLog.group = bill.group;
+	    req.billsLog.amountBefore = req.body.amount;
+	    req.billsLog.amountAfter = bill.amount;
+	    
+	    next();
+    });
+	  
 	  return res.status(200).json(doc);
   });
 };
 
-exports.destroy = function(req, res) {
-  Bill.findByIdAndRemove(req.params.id, function(err, user) {
+exports.destroy = function(req, res, next) {
+  Bill.findByIdAndRemove(req.params.id, function(err, bill) {
     if(err) return res.status(500).send(err);
-    return res.status(204).send('No Content');
+    
+    // for the logs
+    user.connectedUser(req, bill, function(req, bill, user){
+	    req.billsLog = {};
+	    req.billsLog.action = 'delete';
+	    req.billsLog.billTitle = bill.title;
+	    req.billsLog.userName = user.name;
+	    req.billsLog.group = bill.group;
+	    
+	    next();
+    });
+    
+    res.status(204).send('No Content');
   });
 };
 

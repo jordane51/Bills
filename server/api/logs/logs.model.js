@@ -4,10 +4,9 @@ var crypto = require('crypto');
 var Schema = mongoose.Schema;
 
 var LogsSchema = new Schema({
-	billId: String,
-	billName: String,
+	billTitle: String,
 	group: [{userId: String, userName: String}],
-	userId: String,
+	userName: String,
 	action: String,
 	amountBefore: Number,
 	amountAfter: Number

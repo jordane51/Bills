@@ -13,16 +13,19 @@ exports.showLogsForUser = function(req, res){
 
 exports.addLog = function(req, res){
 	if(!req.billsLog){
-		res.status(500);
-		res.send('Error');
+		console.log('Error while creating log');
 	} else {
 		Logs.create({
-			billId: req.billsLog.billBeforeBillId,
-			group: req.billsLog.billBeforeGroup,
-			userId: req.billsLog.userId,
+			billTitle: req.billsLog.billTitle,
+			userName: req.billsLog.userName,
 			action: req.billsLog.action,
-			amountBefore: req.billsLogs.amountBefore,
-			amountAfter: req.billsLogs.amountAfter
-		})
+			amountBefore: req.billsLog.amountBefore,
+			amountAfter: req.billsLog.amountAfter,
+			group: req.billsLog.group
+		}, function(err, res){
+			if(err){
+				console.log('Error while creating log.');
+			}
+		});
 	}
 }
