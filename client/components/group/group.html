@@ -1,23 +1,65 @@
-<div ng-controller="GroupController as groupCtrl">
+<!-- <div ng-controller="GroupController as groupCtrl">
    <div ng-show="groupError" class="alert alert-danger" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span class="sr-only">Error:</span>
 		Please fill all the fields then submit again.
-	</div>
-	<form name="groupForm" novalidate ng-submit="send()">
-		<div class="form-group has-feedback">
+	</div> 
+	<form name="groupForm" novalidate  ng-controller="GroupController" ng-submit="send()">
+		<div class="form-group">
 			<label for="nameGroup">Name</label>
 			<input type="nameGroup" class="form-control" id="nameGroup" name="nameGroupe" placeholder="nameGroup" ng-model="group.nameGroup" required="">
 		</div>
-		<div class="form-group has-feedback">
-			<label for="email">Add Member</label>
-			<div class="form-signin" ng-repeat="number in MemberNumber"> 
+		<div class="form-group">
+			<label for="addMember">Add Member</label>
+			<div  class="form-group" ng-repeat="number in MemberNumber"> 
 				<input type="pseudo" class="form-control" id="pseudo" name="pseudo" placeholder="pseudo" ng-model="groups.membres[number].pseudo" required="">
-				<input type="email" class="form-control" id="email" name="userEmail" placeholder="email" ng-model="groups.membres[number].email" required="">
+				<input type="email" class="form-control" id="email" name="email" placeholder="email" ng-model="groups.membres[number].email" required="">
 				<span ng-show="groupForm.email.$error.email" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
-		<!-- <a href ng-click="add()"> Ajouter un autre membre </a> <br>-->
+		 <a href ng-click="add()"> Ajouter un autre membre </a> <br> 
 		<button type="submit" class="btn btn-primary" >Send</button>
 	</form>
+</div> -->
+
+<div ng-controller="GroupController as GroupCtrl">
+    <button ng-click="GroupCtrl.add()" type="button" class="btn btn-primary">
+        Ajouter
+    </button>
+    <script type="text/ng-template" id="modalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Ajouter un groupe</h3>
+        </div>
+        <div class="modal-body">
+            <form novalidate class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputName">
+                        Nom:
+                    </label>
+                    <input class="col-sm-9" type="text" id="inputName" ng-model="form.group.name" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="inputEmail">
+                        Ajouter un membre:
+                    </label>
+                    <input class="col-sm-9" id="inputPseudo" type="pseudo" ng-model="form.group.members.pseudo" />
+                    <input class="col-sm-9" id="inputEmail" type="email" ng-model="form.group.members.email" />
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <input class="btn btn-default"  type="button" ng-click="form.cancel()" value="Annuler" />
+            <input class="btn btn-primary"  type="submit" ng-click="form.submit()" value="Confirmer" />
+        </div>
+    </script>
+    <table class="table table-hover">
+        <tr>
+            <th>Groupe</th>
+            <th>Membres</th>
+        </tr>
+        <tr ng-repeat="group in GroupCtrl.group track by $index" ng-click="GroupCtrl.update($index)">
+            <td>{{group.name}}</td>
+            <td>{{group.members.pseudo}}</td>
+        </tr>
+    </table>
 </div>
