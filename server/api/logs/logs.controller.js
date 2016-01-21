@@ -1,9 +1,9 @@
 var Logs = require('./logs.model');
 
 exports.showLogsForUser = function(req, res){
-	Logs.findOne({'group.userId': req.params.id}, function(err, logs){
+	Logs.find({'group.userId': req.params.id}, function(err, logs){
 		if(logs && !err){
-			res.send(logs)
+			res.json(logs)
 		} else {
 			res.status(500);
 			res.send('Error');
@@ -12,7 +12,7 @@ exports.showLogsForUser = function(req, res){
 };
 
 exports.addLog = function(req, res){
-	if(req.billsLog){
+	if(!req.billsLog){
 		res.status(500);
 		res.send('Error');
 	} else {

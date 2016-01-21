@@ -8,7 +8,7 @@ var BillSchema = new Schema({
 	//description:String,
 	amount: Number,
 	//group: {grouName: String}
-	group: [{userId: String, owed: Number}]
+	group: [{userId: String, userName: String, owed: Number}]
 });
 
 module.exports = mongoose.model('Bill', BillSchema);

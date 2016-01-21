@@ -73,6 +73,7 @@ User.find({}).remove(function(){
 			User.create({email: 'test@test.com', password: User.encryptPassword('password'), token: 'AOGl2hvy1kH/wuvaZzLlTCF97ZmJqd89zTw6xv6PPenLuRHpldlpOA==', name: 'Demo user'}, function(err, docUser){
 				Bill.create({title: 'Restaurant 20/01/2016', amount: '50', group: [{userId: docUser._id, owed: 10}]}, function(err, docBill){
 					Logs.create({billId: docBill._id, group: [{userId: docUser._id}], userId: docUser._id, action: 'reimburse', amountBefore: 10, amountAfter: 1});
+					Logs.create({billId: docBill._id, group: [{userId: docUser._id}], userId: docUser._id, action: 'delete'});
 				});
 			});
 		});

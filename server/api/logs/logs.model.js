@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var LogsSchema = new Schema({
 	billId: String,
-	group: [{userId: String}],
+	billName: String,
+	group: [{userId: String, userName: String}],
 	userId: String,
 	action: String,
 	amountBefore: Number,
