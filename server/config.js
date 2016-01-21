@@ -5,7 +5,7 @@
 module.exports = {
 	ip: '0.0.0.0',
 	port: 3000,
-	mongoDB: 'mongodb://localhost/bills'	
+	mongoDB: 'mongodb://localhost/jordane51_Bills:27017'	
 };
 /*
 var mongo = require('mongodb'),
