@@ -6,7 +6,25 @@ var angular = require('angular')
 
 var bills = angular.module('bills', [require('../modal')])
 
-function controller($router, $log, modalParams) {
+function controller($router, $log, modalParams, $http, user) {
+    $http({
+        url: '/auth/login',
+        method: 'POST',
+        data: {email: user.email, password: user.password}
+    }).then(function(res) {
+        $http({
+            url: '/api/bills',
+            method: 'GET',
+            headers: {'Authorization': res.data.token}
+        }).then(
+            function (resBills) {
+                console.log(resBills.data)
+            },
+            function (res) {
+                console.log('bills request error')
+            })
+    })
+
     this.bills = [
         { name: 'John', amount: 10, description: 'food', share: 1, date: new Date(), owe: 0 },
         { name: 'Doe', amount: 20, description: 'dog food', share: 0.2, date: new Date(), owe: 0 }
@@ -43,7 +61,7 @@ function controller($router, $log, modalParams) {
 }
 
 
-controller.$inject = ['$router', '$log', 'modalParams']
+controller.$inject = ['$router', '$log', 'modalParams', '$http', 'user']
 
 bills.controller('BillsController', controller)
 
