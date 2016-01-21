@@ -2,9 +2,9 @@
  * Created by xhitedev on 12/31/15.
  */
 
-var angular = require('angular')
+var angular = require('angular');
 
-var bootstrap = require('angular-ui-bootstrap')
+var bootstrap = require('angular-ui-bootstrap');
 
 require('angular-new-router');
 require('angular-cookies');
@@ -53,12 +53,12 @@ function controller($scope, $router, user) {
 controller.$inject = ['$scope', '$router', 'user'];
 
 controller.$routeConfig = [
-    { path: '/', components: { container: "bills", popup: "modal"} },
-    { path: '/recent', component: "recent" },
-    { path: '/account', component: "account" },
-    { path: '/group', component: "group" },
-    { path: '/login', component: "login" },
-    { path: '/register', component: "register" }
+    { path: '/', components: { container: "bills", popup: "modal"}, as: "bills"},
+    { path: '/recent', component: { container: "recent" }, as: "recent"},
+    { path: '/account', component: { container: "account" }, as: "account"},
+    { path: '/group', component: { container: "group" }, as: "group"},
+    { path: '/login', component: {container: "login" }, as: "login"},
+    { path: '/register', component: {container: "register" }, as: "register"}
 ]
 
 billsApp.service('UserService', user);
