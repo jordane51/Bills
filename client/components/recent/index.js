@@ -30,6 +30,22 @@ var recent = angular.module('recent', []).controller('RecentController', ['$scop
 		});
 	};
 	
+	var getActionText = function(action){
+		switch(action){
+			case 'reimburse':
+				return 'reimbursed';
+			break;
+			case 'delete':
+				return 'deleted';
+			break;
+			case 'create':
+				return 'created';
+			break;
+			default:
+			break;
+		}
+	}
+	
 	$scope.parseLogs = function(){
 		$scope.logs = [];
 		for(var i = 0; i < $scope.rawLogs.length; i++){
@@ -39,14 +55,11 @@ var recent = angular.module('recent', []).controller('RecentController', ['$scop
 					$scope.logs.push({
 						'username': userName,
 						'title': billTitle,
-						'action': bill.action,
+						'action': getActionText(bill.action),
 						'amount': bill.amountBefore - bill.amountAfter
 					});
 				});
 			});
-			/*
-				
-				*/
 		}
 	};
 

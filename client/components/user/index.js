@@ -15,11 +15,13 @@ var user = angular.module('user', []).factory('user', ['$cookies', function($coo
 			return false;
 		},
 		diconnect: function(){
+			$cookies.remove('connectedUser');
+			$cookies.remove('connectedUserName');
+			$cookies.remove('connectedUserEmail');
 			this.hasDisconnected = true;
 			this.isConnected = false;
 			this.user.name = '';
 			this.user.email = '';
-			$cookies.remove('connectedUser');
 		},
 		connect: function(token, name, email){
 			this.isConnected = true;

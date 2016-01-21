@@ -18,12 +18,21 @@ var register = angular.module('register', []).controller('RegisterController', [
 				method: 'POST',
 				data: {email: user.email, password: user.password, name: user.name}}
 				).then(function(res){
-					user.connect(res.data.token);
-					$location.path ('/');
-				}, function(res){
-					$scope.registerErrorMessage = res.data;
-					$scope.registerError = true;
-				});
+					$http({
+						url: '/api/users/me',
+						method: 'GET',
+						headers: {'Authorization': res.data.token}}
+						).then(function(resMe){
+							user.connect(res.data.token, resMe.data.name, resMe.data.email);
+							$location.path ('/');
+						}, function(res){
+							$scope.registerError = 'Could not find user.';
+						});	
+					}, 
+					function(res){
+						$scope.registerErrorMessage = res.data;
+						$scope.registerError = true;
+					});
 		}
 	}
 }]);
