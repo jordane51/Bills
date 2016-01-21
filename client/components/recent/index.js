@@ -30,23 +30,33 @@ var recent = angular.module('recent', []).controller('RecentController', ['$scop
 		});
 	};
 	
+	var getActionText = function(action){
+		switch(action){
+			case 'reimburse':
+				return 'reimbursed';
+			break;
+			case 'delete':
+				return 'deleted';
+			break;
+			case 'create':
+				return 'created';
+			break;
+			default:
+			break;
+		}
+	}
+	
 	$scope.parseLogs = function(){
 		$scope.logs = [];
+		console.log($scope.rawLogs);
 		for(var i = 0; i < $scope.rawLogs.length; i++){
 			var bill = $scope.rawLogs[i];
-			getNameOfUserById(bill, bill.userId, function(bill, userName){
-				getTitleOfBillById(bill, bill.billId, function(bill, billTitle){
-					$scope.logs.push({
-						'username': userName,
-						'title': billTitle,
-						'action': bill.action,
-						'amount': bill.amountBefore - bill.amountAfter
-					});
+				$scope.logs.push({
+					'username': bill.userName,
+					'title': bill.billTitle,
+					'action': getActionText(bill.action),
+					'amount': bill.amountBefore - bill.amountAfter
 				});
-			});
-			/*
-				
-				*/
 		}
 	};
 

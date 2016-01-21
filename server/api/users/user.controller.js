@@ -1,5 +1,15 @@
 var User = require('./user.model');
 
+exports.connectedUser = function(req, bill, callback){
+	User.findOne({'token': req.headers["authorization"]}, '_id email name token', function(err, user){
+		if(user && !err){
+			callback(req, bill, user);
+		} else {
+			callback(req, bill, null);
+		}
+	})
+}
+
 exports.show = function(req, res){
 	User.findOne({'token': req.headers["authorization"]}, '_id email name token', function(err, user){
 		if(user && !err){

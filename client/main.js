@@ -32,12 +32,12 @@ var billsApp = angular.module('billsApp', [
     user
 ]);
 
-function controller($scope, $router, user) {
+function controller($scope, $router, $location, user) {
     this.navs = [
         {id: "bills", name: "Dépenses"},
         {id: "recent", name: "Historique"},
         {id: "account", name: "Compte"},
-        {id: "group", name: "Group" },
+        //{id: "group", name: "Group" },
     ];
     this.active = this.navs[0];
     this.setActive = function(current){
@@ -48,17 +48,24 @@ function controller($scope, $router, user) {
         this.toggled = !this.toggled;
     };
     $scope.user = user;
+    $scope.user.refreshUserStatus();
+    if(!$scope.user.isConnected){
+		$location.path('/login');   
+	} else {
+		$location.path('/bills');
+	}
 }
 
-controller.$inject = ['$scope', '$router', 'user'];
+controller.$inject = ['$scope', '$router', '$location', 'user'];
 
 controller.$routeConfig = [
     { path: '/', components: { container: "bills", popup: "modal"}, as: "bills"},
-    { path: '/recent', component: { container: "recent" }, as: "recent"},
-    { path: '/account', component: { container: "account" }, as: "account"},
-    { path: '/group', component: { container: "group" }, as: "group"},
-    { path: '/login', component: {container: "login" }, as: "login"},
-    { path: '/register', component: {container: "register" }, as: "register"}
+    { path: '/bills', components: { container: "bills", popup: "modal"}, as: "bills"},
+    { path: '/recent', component: { container: "recent", popup: "modal"}, as: "recent"},
+    { path: '/account', component: { container: "account", popup: "modal"}, as: "account"},
+    { path: '/group', component: { container: "group", popup: "modal"}, as: "group"},
+    { path: '/login', component: {container: "login", popup: "modal" }, as: "login"},
+    { path: '/register', component: {container: "register", popup: "modal" }, as: "register"}
 ]
 
 billsApp.service('UserService', user);

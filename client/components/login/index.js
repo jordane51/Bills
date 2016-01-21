@@ -22,7 +22,7 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 						headers: {'Authorization': res.data.token}}
 						).then(function(resMe){
 							user.connect(res.data.token, resMe.data.name, resMe.data.email);
-							$location.path ('/');
+							$location.path('/');
 						}, function(res){
 							$scope.loginError = true;
 						});	
@@ -32,6 +32,5 @@ var login = angular.module('login', []).controller('LoginController', ['$scope',
 		}
 	}
 }]);
-
 
 module.exports = 'login';
