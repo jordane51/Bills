@@ -16,6 +16,15 @@ exports.findByGroup = function(req, res) {
   });
 };
 
+exports.findByUserId = function(req, res){
+	Bill.find({"group.userId": req.params.id}, function(err, bills){
+		if(err) { 
+			return handleError(res, err);
+		}
+		return res.status(200).json(bills);
+	});
+};
+
 exports.show = function (req, res) {
   Bill.findById(req.params.id, function (err, bill) {
     if(err) { return handleError(res, err); }
