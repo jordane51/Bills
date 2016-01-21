@@ -2,72 +2,49 @@
  * Created by xhitedev on 1/4/16.
  */
 
-var angular = require('angular');
+var angular = require('angular')
 
-var bills = angular.module('bills', []);
+var bills = angular.module('bills', [require('../modal')])
 
-function modalController($uibModalInstance, bill) {
-    this.bill = {
-        name: bill.name,
-        email: bill.email,
-        amount: bill.amount,
-        description: bill.description,
-        share: bill.share
-    };
-    this.submit = function(){
-        $uibModalInstance.close(this.bill);
-    }
-    this.cancel = function(){
-        $uibModalInstance.dismiss('cancel');
-    }
-}
-
-modalController.$inject = ['$uibModalInstance', 'bill'];
-
-function controller($uibModal, $log) {
+function controller($router, $log, modalParams) {
     this.bills = [
-        {name: 'John', amount:10, description:'food', share: 1},
-        {name: 'Doe', amount:20, description:'dog food', share: 0.2}
-    ];
-    function getModalInstance(bill){
-        return $uibModal.open({
-            templateUrl: 'modalContent.html',
-            controller: modalController,
-            controllerAs: 'form',
-            bindToController: true,
-            size: 'md',
-            resolve: {
-                bill: function(){
-                    return bill;
-                }
-            }
-        });
+        { name: 'John', amount: 10, description: 'food', share: 1, date: new Date(), owe: 0 },
+        { name: 'Doe', amount: 20, description: 'dog food', share: 0.2, date: new Date(), owe: 0 }
+    ]
+    this.delete = function (i) {
+        this.bills.splice(i, 1)
     }
-    this.update = function (index) {
-        var modalInstance = getModalInstance(this.bills[index]);
-        modalInstance.result.then(
-            function (data) {
-                this.bills[index] = data;
-                $log.info('Bill updated: ' + data);
-            }.bind(this),
-            function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-    };
+    this.update = function (i) {
+        var title = "Modifier une facture"
+        var bill = this.bills[i]
+        var callback = function (data) {
+            this.bills[i] = data
+            $log.info('Bill updated: ' + data)
+        }.bind(this)
+        modalParams.setParams(title, bill, callback)
+    }
+
     this.add = function () {
-        var modalInstance = getModalInstance({});
-        modalInstance.result.then(
-            function (data) {
-                this.bills.push(data)
-            }.bind(this),
-            function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
+        var newBill = {
+            name: '',
+            email: '',
+            date: new Date(),
+            amount: 0,
+            description: '',
+            share: 1
+        }
+        var title = "Modifier une facture"
+        modalParams.setParams(title, newBill, function(){})
+
+    }
+    $router.config([
+        { path: '/', component: "modal" }
+    ])
 }
 
-controller.$inject = ['$uibModal', '$log'];
 
-bills.controller('BillsController', controller);
+controller.$inject = ['$router', '$log', 'modalParams']
 
-module.exports = 'bills';
+bills.controller('BillsController', controller)
+
+module.exports = 'bills'

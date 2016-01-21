@@ -2,9 +2,9 @@
  * Created by xhitedev on 12/31/15.
  */
 
-var angular = require('angular');
+var angular = require('angular')
 
-var bootstrap = require('angular-ui-bootstrap');
+var bootstrap = require('angular-ui-bootstrap')
 
 require('angular-new-router');
 require('angular-cookies');
@@ -16,7 +16,7 @@ var login = require('./components/login');
 var register = require('./components/register');
 var group = require('./components/group');
 var user = require('./components/user/');
-
+var modal = require('./components/modal');
 
 var billsApp = angular.module('billsApp', [
     bootstrap,
@@ -28,6 +28,7 @@ var billsApp = angular.module('billsApp', [
     group,
     login,
     register,
+    modal,
     user
 ]);
 
@@ -52,13 +53,13 @@ function controller($scope, $router, user) {
 controller.$inject = ['$scope', '$router', 'user'];
 
 controller.$routeConfig = [
-    { path: '/', component: "bills" },
+    { path: '/', components: { container: "bills", popup: "modal"} },
     { path: '/recent', component: "recent" },
     { path: '/account', component: "account" },
     { path: '/group', component: "group" },
     { path: '/login', component: "login" },
     { path: '/register', component: "register" }
-];
+]
 
 billsApp.service('UserService', user);
 billsApp.controller('AppController', controller);
