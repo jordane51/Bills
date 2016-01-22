@@ -26,7 +26,8 @@ function controller($log, modalParams, $http, user) {
                         headers: {'Authorization': user.token}
                     }).then(
                         function (resUser) {
-                            group.name = resUser.data.name
+                            group.userName = resUser.data.name
+                            group.email = resUser.data.email
                         }.bind(this),
                         function (res) {
                             console.log('bills request error')
@@ -85,7 +86,8 @@ function controller($log, modalParams, $http, user) {
             date: new Date(),
             amount: 0,
             description: '',
-            share: 1
+            share: 1,
+            group: []
         }
         var title = "Ajouter une facture"
         var callback = function(){
@@ -98,6 +100,7 @@ function controller($log, modalParams, $http, user) {
                 function (res) {
                     this.bills.push(res.data)
                     $log.info('bill added')
+                    console.log(user.token)
                 }.bind(this),
                 function (res) {
                     $log.info('bill post request error')

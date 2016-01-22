@@ -7,6 +7,7 @@ var BillSchema = new Schema({
 	title: String,
 	//description:String,
 	amount: Number,
+	date: Date,
 	//group: {grouName: String}
 	group: [{userId: String, userName: String, owed: Number}]
 });
