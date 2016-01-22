@@ -20,10 +20,11 @@ exports.show = function (req, res) {
 exports.create = function(req, res) {
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
+    console.log("group created")
     return res.status(201).json(group);
   });
 };
-
+/*
 exports.update = function(req, res) {
   if(req.body._id) {
     delete req.body.id;
@@ -35,6 +36,26 @@ exports.update = function(req, res) {
       return handleError(res, err);
     }
     return res.status(200).json(p);
+  });
+};
+*/
+
+exports.update = function(req, res) {
+  if(req.body._id) {
+    delete req.body.id;
+  }
+  Bill.findOneAndUpdate(req.params.id, function(err, group){
+    if(err){
+      return handleError(res, err);
+    }
+    if(!group){ 
+      return res.status(404).send('Not Found'); 
+    }
+    var updated = _.merge(group, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.status(200).json(group);
+    });
   });
 };
 
