@@ -11,7 +11,7 @@ function controller($uibModalInstance, $http, bill, title, user) {
         email: bill.email,
         date: new Date(bill.date),
         amount: bill.amount,
-        description: bill.description,
+        title: bill.title,
         share: bill.share,
         group: bill.group
     }
