@@ -15,9 +15,8 @@ function controller($uibModalInstance, bill, title) {
         description: bill.description,
         share: bill.share
     }
-
     this.submit = function(){
-        $uibModalInstance.close(bill)
+        $uibModalInstance.close(this.bill)
     }
     this.cancel = function(){
         $uibModalInstance.dismiss('cancel')
