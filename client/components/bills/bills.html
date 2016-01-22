@@ -19,23 +19,27 @@
             <th>
                 Description
             </th>
+            <th>
+            </th>
         </tr>
-        <tr ng-repeat="bill in billsCtrl.bills track by $index" ng-click="billsCtrl.update($index)">
-            <td>
+        <tr ng-repeat="bill in billsCtrl.bills track by $index">
+            <td ng-click="billsCtrl.update($index)">
                 {{bill.date | date:'d MMM yy'}}
             </td>
-            <td>
+            <td ng-click="billsCtrl.update($index)">
                 <div ng-repeat="user in bill.group">{{user.userName}}</div>
             </td>
-            <td>
+            <td ng-click="billsCtrl.update($index)">
                 {{bill.amount}}
                 €
             </td>
-            <td>
+            <td ng-click="billsCtrl.update($index)">
                 <div ng-repeat="user in bill.group">{{user.owed}} €</div>
             </td>
-            <td>
+            <td ng-click="billsCtrl.update($index)">
                 {{bill.title}}
+            </td>
+            <td>
                 <button ng-click="billsCtrl.delete($index)" type="button" class="material-icons close" aria-label="Close">
                     close
                 </button>

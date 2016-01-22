@@ -11,11 +11,14 @@
                     E-mail:
                 </label>
             </div>
-            <div ng-repeat="user in form.bill.group" class="form-group">
+            <div ng-repeat="user in form.bill.group track by $index" class="form-group">
                 <label class="col-sm-2">
                 </label>
-                <input class="col-sm-7" type="email" ng-model="user.email" placeholder="E-mail"/>
-                <input class="col-sm-2" type="number" ng-model="user.owed" placeholder="Montant dû"/> €
+                <input class="col-sm-7" type="email" ng-model="user.email" placeholder="E-mail" required/>
+                <input class="col-sm-2" type="number" ng-model="user.owed" placeholder="Montant dû" required/> €
+                <button ng-click="form.bill.group.splice($index,1)" type="button" class="material-icons close" aria-label="Close">
+                    close
+                </button>
             </div>
             <div class="form-group">
                 <label class="col-sm-2">
@@ -26,13 +29,13 @@
                 <label class="col-sm-2" for="inputDate">
                     Date:
                 </label>
-                <input class="col-sm-9" id="inputDate" type="date" ng-model="form.bill.date" />
+                <input class="col-sm-9" id="inputDate" type="date" ng-model="form.bill.date" required/>
             </div>
             <div class="form-group">
                 <label class="col-sm-2" for="inputAmount">
                     Montant total:
-                </label>
-                <input class="col-sm-9" id="inputAmount" type="number" ng-model="form.bill.amount" />€
+                </label >
+                <input class="col-sm-9" id="inputAmount" type="number" ng-model="form.bill.amount" required/>€
             </div>
             <!--
             <div class="form-group">
