@@ -12,12 +12,9 @@
             </th>
             <th>
                 Montant
-                <span class="badge">
-                    dû
-                </span>
             </th>
             <th>
-                Je dois
+                Me doivent
             </th>
             <th>
                 Description
@@ -28,19 +25,14 @@
                 {{bill.date | date:'d MMM yy'}}
             </td>
             <td>
-                {{bill.name}},
-                <div>{{bill.name}}</div>
+                <div ng-repeat="user in bill.group">{{user.userName}}</div>
             </td>
             <td>
                 {{bill.amount}}
-                <span class="badge">
-                    {{bill.amount*bill.share}}
-                </span>
                 €
             </td>
             <td>
-                {{bill.owe}}
-                €
+                <div ng-repeat="user in bill.group">{{user.owed}} €</div>
             </td>
             <td>
                 {{bill.description}}

@@ -4,27 +4,61 @@
 
 var modal = angular.module('modal', [])
 
-function controller($uibModalInstance, bill, title) {
+function controller($uibModalInstance, $http, bill, title, user) {
     this.title = title
-
     this.bill = {
         name: bill.name,
         email: bill.email,
-        date: bill.date,
+        date: new Date(bill.date),
         amount: bill.amount,
         description: bill.description,
-        share: bill.share
+        share: bill.share,
+        group: bill.group
     }
 
+    this.users = []/*
+    $http({
+        url: '/api/users',
+        method: 'POST',
+        headers: {'Authorization': user.token},
+        data:
+    }).then(
+        function (res) {
+            this.bills.push(res.data)
+            $log.info('bill added')
+        }.bind(this),
+        function (res) {
+            $log.info('bill post request error')
+        }
+    )*/
+    this.addEmail = function(){
+        this.bill.group.push({owed:0})
+    }
     this.submit = function(){
-        $uibModalInstance.close(bill)
+        var group = this.bill.group
+        for(var i = 0; i<group.length; ++i){
+            var group = group[i]
+            $http({
+                url: '/api/users/email/'+ group.email,
+                method: 'GET',
+                headers: {'Authorization': user.token}
+            }).then(
+                function (res) {
+                    group.userId = res.data._id
+                }.bind(this),
+                function (res) {
+                    group.userName = group.email
+                }
+            )
+        }
+        $uibModalInstance.close(this.bill)
     }
     this.cancel = function(){
         $uibModalInstance.dismiss('cancel')
     }
 }
 
-controller.$inject = ['$uibModalInstance', 'bill', 'title']
+controller.$inject = ['$uibModalInstance', '$http', 'bill', 'title', 'user']
 
 function modalController() {}
 
