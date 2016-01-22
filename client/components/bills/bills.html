@@ -35,7 +35,7 @@
                 <div ng-repeat="user in bill.group">{{user.owed}} €</div>
             </td>
             <td>
-                {{bill.description}}
+                {{bill.title}}
                 <button ng-click="billsCtrl.delete($index)" type="button" class="material-icons close" aria-label="Close">
                     close
                 </button>

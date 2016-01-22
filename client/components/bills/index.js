@@ -17,7 +17,6 @@ function controller($log, modalParams, $http, user) {
             this.bills = resBills.data
             for(var i = 0; i<this.bills.length; ++i){
                 var bill = this.bills[i]
-                bill.description = bill.title
                 for(var j = 0; j<bill.group.length; ++j){
                     var group = bill.group[j]
                     $http({
@@ -85,7 +84,7 @@ function controller($log, modalParams, $http, user) {
             email: '',
             date: new Date(),
             amount: 0,
-            description: '',
+            title: '',
             share: 1,
             group: []
         }
